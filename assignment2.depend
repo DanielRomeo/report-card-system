@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1586460274 source:/home/daniel/Documents/c++ projects/assignment2/main.cpp
+	<iostream>
+	<utility>
+	<cmath>
+	<string.h>
+
