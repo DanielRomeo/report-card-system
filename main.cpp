@@ -2,7 +2,7 @@
 #include <utility>
 #include <cmath>
 #include <string.h>
-
+#include <vector>
 using namespace std;
 
 
@@ -43,7 +43,7 @@ string displayFitnessResult(float BMI){
         string name, surname, schoolName;
     };
 
-studentData getStudentDetails(){
+studentData studentDetails(){
 
     studentData newStudent;
     cout << "Enter Name, Surname and SchoolName" << endl;
@@ -149,7 +149,7 @@ marksData getMarks(){
         getMarks();
     }
     newMarks.mathematicsCode = getCode(newMarks.mathematics);
-    newMarks.mathematicsSymbol = getSymbol(newMarks.mathematicsSymbol);
+    newMarks.mathematicsSymbol = getSymbol(newMarks.mathematicsCode);
 
     // lo
     cout << "\n Enter Life orientation marks" << endl;
@@ -159,7 +159,7 @@ marksData getMarks(){
         getMarks();
     }
     newMarks.loCode = getCode(newMarks.lo);
-    newMarks.loSymbol = getSymbol(newMarks.loSymbol);
+    newMarks.loSymbol = getSymbol(newMarks.loCode);
 
     // history marks
     cout << "\n Enter history marks" << endl;
@@ -169,7 +169,7 @@ marksData getMarks(){
         getMarks();
     }
     newMarks.historyCode = getCode(newMarks.history);
-    newMarks.historySymbol = getSymbol(newMarks.historySymbol);
+    newMarks.historySymbol = getSymbol(newMarks.historyCode);
 
     // computer lieracy marks
     cout << "\n Enter computer Literacy marks" << endl;
@@ -179,7 +179,7 @@ marksData getMarks(){
         getMarks();
     }
     newMarks.cLiteracyCode = getCode(newMarks.cLiteracy);
-    newMarks.cLiteracySymbol = getSymbol(newMarks.cLiteracySymbol);
+    newMarks.cLiteracySymbol = getSymbol(newMarks.cLiteracyCode);
 
     // geography marks
     cout << "\n Enter geography marks" << endl;
@@ -189,7 +189,7 @@ marksData getMarks(){
         getMarks();
     }
     newMarks.geographyCode = getCode(newMarks.geography);
-    newMarks.geographySymbol = getSymbol(newMarks.geographySymbol);
+    newMarks.geographySymbol = getSymbol(newMarks.geographyCode);
 
     return newMarks;
 }
@@ -197,10 +197,39 @@ marksData getMarks(){
 
 
 /* new function :*/
-float calcAvarageYearMark(int english, int geography, int mathematics, int history, int lo, int cliteracy){
-    float avarage = english + geography + mathematics + history + lo + cliteracy;
+float avarageYearMark(int english, int geography, int mathematics, int history, int lo, int cLiteracy){
+    float avarage = english + geography + mathematics + history + lo + cLiteracy;
     avarage = avarage / 6;
     return avarage;
+}
+
+bool passOrFail(int english, int geography, int mathematics, int history, int lo, int cLiteracy){
+    // learner has to pass atleast 4 inc english:
+    int i;
+    bool passedEnglish;
+    int subjects[6] = {english, geography, mathematics, history, cLiteracy, lo};
+
+    vector<int> passedSubjects;
+
+    // check if student passed english:
+    if(english < 50){
+        return false;
+    }
+
+    // loop through remaining subjects to check if student passed:
+    for(i = 0; i < 5; i++){
+        // first loop through them and add passed subjects to array:
+        if(subjects[i] >= 50){
+            passedSubjects.push_back(subjects[i]);
+        }
+    }
+
+    // count how man items are in passedSubjects:
+    if(passedSubjects.size() >= 4){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 
@@ -211,7 +240,7 @@ int main()
 
     // get student details:
     studentData student1Details;
-    student1Details = getStudentDetails();
+    student1Details = studentDetails();
 
     // get student marks
     marksData student1Marks;
@@ -228,26 +257,61 @@ int main()
     lo = student1Marks.lo;
 
     // calculates students avarage mark:
-    student1Avarage = calcAvarageYearMark(english, geography, mathematics, history, cLiteracy, lo);
+    student1Avarage = avarageYearMark(english, geography, mathematics, history, cLiteracy, lo);
 
     // display codes:
-    cout << "english code "<< student1Marks.englishCode << endl;
-    cout << "english symbol "<< student1Marks.englishSymbol << endl;
+    //cout << "english code "<< student1Marks.englishCode << endl;
+    //cout << "english symbol "<< student1Marks.englishSymbol << endl;
 
-    cout << student1Avarage << endl;
+    //cout << student1Avarage << endl;
 
     // call minmax to get lowest and highest values
     int biggest ;
     int smallest ;
-
+    bool passed ;
     //smallest
     pair <int, int> p = minMax(english, geography, mathematics, history, cLiteracy, lo);
     biggest = p.first;
     smallest = p.second;
 
+    passed = passOrFail(english, geography, mathematics, history, cLiteracy, lo); // returns 0 or 1:
+    //cout << passed << endl;
 
-    cout << biggest << endl;
-    cout << smallest << endl;
+
+
+
+
+
+
+
+
+    // These sequences of characters are treated as decimal numbers by
+  // the compiler and converted to the machine internal format.
+
+  long int pos_value =  12345678;
+  long int neg_value = -87654321;
+  float value = 2.71828;
+
+    cout << "*********************************************************" << endl;
+
+    cout << "              STUDENT ACADEMIC RECORD*******************" << endl;
+
+    cout << "This program inputs the learners marks of matric and prints the students' final report." << endl;
+
+    cout << "************************************************************************" << endl;
+
+    cout << "Name: " << student1Details.name << "                  " << "School: "<< student1Details.schoolName << endl;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
