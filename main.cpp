@@ -200,13 +200,16 @@ marksData getMarks(){
 float avarageYearMark(int english, int geography, int mathematics, int history, int lo, int cLiteracy){
     float avarage = english + geography + mathematics + history + lo + cLiteracy;
     avarage = avarage / 6;
+
+    //first round it off
+    avarage = round(avarage);
+
     return avarage;
 }
 
 bool passOrFail(int english, int geography, int mathematics, int history, int lo, int cLiteracy){
     // learner has to pass atleast 4 inc english:
     int i;
-    bool passedEnglish;
     int subjects[6] = {english, geography, mathematics, history, cLiteracy, lo};
 
     vector<int> passedSubjects;
@@ -259,38 +262,30 @@ int main()
     // calculates students avarage mark:
     student1Avarage = avarageYearMark(english, geography, mathematics, history, cLiteracy, lo);
 
-    // display codes:
-    //cout << "english code "<< student1Marks.englishCode << endl;
-    //cout << "english symbol "<< student1Marks.englishSymbol << endl;
-
-    //cout << student1Avarage << endl;
-
     // call minmax to get lowest and highest values
     int biggest ;
     int smallest ;
     bool passed ;
+    string resultOutcome;
+    int student1AvarageInt, student1AvarageCode;
+    string student1AvarageSymbol;
     //smallest
     pair <int, int> p = minMax(english, geography, mathematics, history, cLiteracy, lo);
     biggest = p.first;
     smallest = p.second;
 
     passed = passOrFail(english, geography, mathematics, history, cLiteracy, lo); // returns 0 or 1:
-    //cout << passed << endl;
+    if(passed == 0){
+        resultOutcome = "Failed";
+    }else{
+        resultOutcome = "Passed";
+    }
 
-
-
-
-
-
-
-
-
-    // These sequences of characters are treated as decimal numbers by
-  // the compiler and converted to the machine internal format.
-
-  long int pos_value =  12345678;
-  long int neg_value = -87654321;
-  float value = 2.71828;
+    // get the avarage symbol and avarage code:
+    /* convert it to integer so that i can reUse the getCode() and getSymbol() functions */
+    student1AvarageInt = (int)student1Avarage;
+    student1AvarageCode = getCode(student1AvarageInt);
+    student1AvarageSymbol = getSymbol(student1AvarageCode);
 
     cout << "*********************************************************" << endl;
 
@@ -298,20 +293,26 @@ int main()
 
     cout << "This program inputs the learners marks of matric and prints the students' final report." << endl;
 
-    cout << "************************************************************************" << endl;
+    cout << "********************************************************" << endl;
+
 
     cout << "Name: " << student1Details.name << "                  " << "School: "<< student1Details.schoolName << endl;
+    cout << " \n" << endl;
 
+    cout << "Subject           " << "          " << "Mark            " << "Symbol" << "                         " << "Code" << endl;
+    cout << "English           " << "          " << english            << "%    " <<  student1Marks.englishSymbol << "     " << student1Marks.englishCode << endl;
+    cout << "Mathematics       " << "          " << mathematics        << "%    " <<  student1Marks.mathematicsSymbol << "     " << student1Marks.mathematicsCode << endl;
+    cout << "Life Orientation  " << "          " << lo                 << "%    " <<  student1Marks.loSymbol << "     " << student1Marks.loCode << endl;
+    cout << "History           " << "          " << history            << "%    " <<  student1Marks.historySymbol << "     " << student1Marks.historyCode << endl;
+    cout << "Computer Literacy " << "          " << cLiteracy          << "%    " <<  student1Marks.cLiteracySymbol << "     " << student1Marks.cLiteracyCode << endl;
 
+    cout << " \n" << endl;
+    cout << "Avarage Year Mark: " << student1AvarageInt << " with Symbol "<< student1AvarageSymbol << " and a code " << student1AvarageCode << endl;
+    cout << "Outcome " << resultOutcome << endl;
 
+    cout << "The higest mark was " <<  biggest << "%." << " The lowest mark was " << smallest << "%" << endl;
 
-
-
-
-
-
-
-
+    cout << "********************************************************" << endl;
 
 
 
