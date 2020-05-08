@@ -47,7 +47,14 @@ studentData studentDetails(){
 
     studentData newStudent;
     cout << "Enter Name, Surname and SchoolName" << endl;
-    cin >> newStudent.name >> newStudent.surname >> newStudent.schoolName;
+    cin >> newStudent.name;
+    cout << "Enter Surname"<< endl;
+    cin >> newStudent.surname;
+    cout << "Enter School Name" << endl;
+    cin.ignore();
+    getline(cin, newStudent.schoolName, '\n');
+
+
     return newStudent;
 }
 
@@ -299,12 +306,13 @@ int main()
     cout << "Name: " << student1Details.name << "                  " << "School: "<< student1Details.schoolName << endl;
     cout << " \n" << endl;
 
-    cout << "Subject           " << "          " << "Mark            " << "Symbol" << "                         " << "Code" << endl;
-    cout << "English           " << "          " << english            << "%    " <<  student1Marks.englishSymbol << "     " << student1Marks.englishCode << endl;
-    cout << "Mathematics       " << "          " << mathematics        << "%    " <<  student1Marks.mathematicsSymbol << "     " << student1Marks.mathematicsCode << endl;
-    cout << "Life Orientation  " << "          " << lo                 << "%    " <<  student1Marks.loSymbol << "     " << student1Marks.loCode << endl;
-    cout << "History           " << "          " << history            << "%    " <<  student1Marks.historySymbol << "     " << student1Marks.historyCode << endl;
-    cout << "Computer Literacy " << "          " << cLiteracy          << "%    " <<  student1Marks.cLiteracySymbol << "     " << student1Marks.cLiteracyCode << endl;
+    cout << "Subject           " << "          " << "Mark     " << "Symbol  " << "Code " << endl;
+    cout << "English           " << "          " << english            << "%         " <<  student1Marks.englishSymbol << "     " << student1Marks.englishCode << endl;
+    cout << "Mathematics       " << "          " << mathematics        << "%         " <<  student1Marks.mathematicsSymbol << "     " << student1Marks.mathematicsCode << endl;
+    cout << "Life Orientation  " << "          " << lo                 << "%         " <<  student1Marks.loSymbol << "     " << student1Marks.loCode << endl;
+    cout << "History           " << "          " << history            << "%         " <<  student1Marks.historySymbol << "     " << student1Marks.historyCode << endl;
+    cout << "Computer Literacy " << "          " << cLiteracy          << "%         " <<  student1Marks.cLiteracySymbol << "     " << student1Marks.cLiteracyCode << endl;
+    cout << "Geography         " << "          " << geography          << "%         " <<  student1Marks.geographySymbol << "     " << student1Marks.geographyCode << endl;
 
     cout << " \n" << endl;
     cout << "Avarage Year Mark: " << student1AvarageInt << " with Symbol "<< student1AvarageSymbol << " and a code " << student1AvarageCode << endl;
