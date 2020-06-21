@@ -7,38 +7,6 @@ using namespace std;
 
 
 
-// making a pair so that i can return 2 values:
-/*
-std::pair<float, float> getData(){
-
-    float weight, height;
-    cout << "What is your weight (in kgs) and height(in meteres)?" << endl;
-    cin >> weight >> height;
-    return std::make_pair(weight, height);
-}
-
-float calcBMI(float weight, float height){
-    float BMI;
-
-    BMI = weight / pow(height, 2);
-    return BMI;
-}
-
-string displayFitnessResult(float BMI){
-    string weightStatus;
-
-    if(BMI < 18.5){
-        weightStatus = "Underweight";
-    }else if((BMI <= 24.9 ) || (BMI <= 18.5 )) {
-        weightStatus = "Healthy";
-    }else if((BMI <= 29.9 ) || (BMI <= 24.5 )){
-        weightStatus = "Overweight";
-    }else if(BMI > 30.0 ){
-        weightStatus = "Obese";
-    }
-
-    cout <<  "Your BMI is: " << BMI << " and weight Status is : " << weightStatus<< endl;
-}*/
  struct studentData{
         string name, surname, schoolName;
     };
@@ -321,17 +289,6 @@ int main()
     cout << "The higest mark was " <<  biggest << "%." << " The lowest mark was " << smallest << "%" << endl;
 
     cout << "********************************************************" << endl;
-
-
-
-    //cout << product1 << endl;
-    //cout << katlego.mathematics << endl;
-    //instatiate my pair:
-    /*pair<float, float> p = getData();
-
-    float BMI = calcBMI(p.first, p.second);
-
-    displayFitnessResult(BMI);*/
 
 
 
